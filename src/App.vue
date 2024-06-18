@@ -1,26 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <component :is="isMobile ? 'WeddingPage' : 'DesktopWarning'"></component>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import WeddingPage from './components/WeddingPage.vue'
+import DesktopWarning from './components/DesktopWarning.vue'
+import { checkDevice } from './helpers';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    WeddingPage,
+    DesktopWarning
+  },
+  computed: {
+    isMobile() {
+      return checkDevice()
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
