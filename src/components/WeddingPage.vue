@@ -15,7 +15,7 @@
     <div class="delimiter"></div>
     <div class="date-container">
       <div class="wrapper">
-        <div class="title">Дата</div>
+        <div class="title">Датаddd</div>
         <div class="text">
           <p>Это особый момент, наполненный радостью, любовью и надеждой на будущее.
             Мы искренне надеемся, что вы сможете присоединиться к нам, чтобы отметить этот
