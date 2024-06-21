@@ -80,7 +80,7 @@
             <label for="trout-roll">Горячий ролл из форели с мягким сливочным сыром</label>
           </div>
           <div class="input-wrapper">
-            <label for="drinks">Пожелание по напиткам</label>
+            <label for="drinks">Пожелание по напиткамvvvv</label>
             <input
                 placeholder="Введите через запятую, либо один"
                 type="text"
