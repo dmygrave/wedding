@@ -3,12 +3,12 @@
     <div class="newlyweds">
       <div class="names-container">
         <div class="sub">Женитьба</div>
-        <div class="title">Дмитрий и Анна</div>
+        <div class="title">Дмитрия и Анны</div>
       </div>
       <div class="photo"></div>
       <div class="text">
         Дорогие родные и близкие!<br>
-        Мы приглашаем вас разделить с нами важный день нашей жизни — нашу свадьбу.
+        Мы приглашаем Вас разделить с нами важный день нашей жизни — нашу свадьбу.
       </div>
       <img src="@/assets/svg/arrow.svg" class="scroll-arrow" alt="arrow">
     </div>
@@ -32,20 +32,36 @@
       <div class="wrapper">
         <div class="title">Место встречи</div>
         <div class="text">
-          <p>Начнем с торжественной церемонии бракосочетания, а после церемонии
-            направимся в банкетный зал, где мы будем наслаждаться вкусным
+          <p>Начнем с торжественной церемонии бракосочетания в ЗАГСе Приморского района по адресу Стародеревенская улица,&nbsp;д.&nbsp;5.<br>
+          <span class="accent">Сбор гостей в 15:10</span> </p>
+          <div class="button-container">
+            <a href="https://yandex.ru/maps/-/CDvweR0k" target="_blank" class="button">Смотреть на карте</a>
+          </div>
+          <p>А после церемонии трансфер доставит Вас в банкетный зал, где мы будем наслаждаться вкусным
             ужином и интересным времяпрепровождением в кругу самых дорогих нам людей.</p>
         </div>
-        <div class="text m-top-m-bottom">
-          <p>Банкетный ресторан &laquo;Праздник&raquo;, Латте Холл</p>
+        <p><span class="accent">Банкетный ресторан &laquo;Праздник&raquo;, Латте Холл</span></p>
+        <div class="button-container">
+          <a href="https://yandex.ru/maps/-/CDv0AX40" target="_blank" class="button">Смотреть на карте</a>
         </div>
-        <a href="https://yandex.ru/maps/-/CDv0AX40" target="_blank" class="button">Смотреть на карте</a>
       </div>
+    </div>
+    <div class="delimiter"></div>
+    <div class="wishes">
+      <div class="title">Пожелания</div>
+       <div class="flowers">
+         <div class="flowers-title">Цветы</div>
+         <div class="wrapper">
+           <div class="text">Пожалуйста, не дарите нам цветы, так как мы не успеем насладиться
+             их красотой до отъезда в свадебное путешествие.</div>
+         </div>
+       </div>
     </div>
     <div class="delimiter"></div>
     <div class="questionnaire">
       <div class="title">Анкета гостя</div>
       <div class="text">Пожалуйста, помогите нам определиться с горячим и напитками :)</div>
+      <div class="text  important">Просим Вас сделать выбор до 30.07.24</div>
       <div class="form-container">
         <div v-if="formSubmitted">
           <div class="thank-you-message">Спасибо!</div>
@@ -59,6 +75,25 @@
                 v-model="form.name"
                 required
             >
+          </div>
+          <div class="preferences">Присутствие</div>
+          <div class="input-wrapper radio">
+            <input
+                type="radio"
+                id="come"
+                value="С удовольствием приду"
+                v-model="form.presence"
+            >
+            <label for="come">С удовольствием приду</label>
+          </div>
+          <div class="input-wrapper radio">
+            <input
+                type="radio"
+                id="dont-come"
+                value="К сожалению, не получится"
+                v-model="form.presence"
+            >
+            <label for="dont-come">К сожалению, не получится</label>
           </div>
           <div class="preferences">Предпочтения по горячему</div>
           <div class="input-wrapper radio">
@@ -80,7 +115,7 @@
             <label for="trout-roll">Горячий ролл из форели с мягким сливочным сыром</label>
           </div>
           <div class="input-wrapper">
-            <label for="drinks">Пожелание по напиткамvvvv</label>
+            <label for="drinks">Пожелание по напиткам</label>
             <input
                 placeholder="Введите через запятую, либо один"
                 type="text"
@@ -94,6 +129,17 @@
           </div>
         </form>
       </div>
+    </div>
+    <div class="photos">
+      <div class="title">Фото со свадьбы</div>
+      <div class="photos-container">
+        <div class="wrapper">
+          <div class="text">Когда мы получим фотографии со свадьбы - Вы сможете найти их здесь.</div>
+        </div>
+      </div>
+    </div>
+    <div class="made">
+      Сделано женихом / идея невесты &#10084;
     </div>
   </div>
 </template>
@@ -111,12 +157,9 @@ export default {
     return {
       form: {
         name: '',
-        hot: [],
-        drinks: ''
-      },
-      hottest: {
-        roll: 'Куриный рулет с моцареллой и вяленными томатами',
-        troutRoll: 'Горячий ролл из форели с мягким сливочным сыром'
+        hot: '',
+        drinks: '',
+        presence: ''
       },
       service_id: 'service_23gr6wj',
       template_id: 'template_udbhhtp',
@@ -132,6 +175,7 @@ export default {
         name: this.form.name,
         hot: this.form.hot,
         drinks: this.form.drinks,
+        presence: this.form.presence,
         to_email: 'dmygrave@gmail.com, anna.cyleva@yandex.ru'
       };
       emailjs.send(this.service_id, this.template_id, templateParams, this.api_key)
@@ -207,7 +251,10 @@ export default {
   margin: 10px auto;
 }
 
-.date-container, .meeting-point {
+.date-container,
+.meeting-point,
+.wishes,
+.photos{
   border-radius: 15px;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -219,9 +266,9 @@ export default {
 
 .meeting-point {
   position: relative;
-  background-image: url("@/assets/images/latte_hall.jpg");
+  background-image: url("@/assets/images/hall.jpg");
   width: 100%;
-  height: 500px;
+  height: 100%;
   background-size: cover;
   background-position: center;
 }
@@ -247,6 +294,7 @@ export default {
 
 .meeting-point .wrapper {
   color: white;
+  padding: 50px;
 }
 
 .date-container .wrapper .text,
@@ -265,15 +313,14 @@ export default {
 }
 
 .button {
-  margin-top: 30px;
   text-decoration: none;
-  padding: 14px 25px;
+  padding: 9px 15px;
   color: #000000;
   font-size: 17px;
   text-transform: uppercase;
   border-width: 1px;
   border-radius: 15px;
-  background-color: #ffffff;
+  background-color: #ffffffb0;
   background-position: center center;
   border-color: transparent;
   border-style: solid;
@@ -282,9 +329,10 @@ export default {
 
 .button.black {
   color: #ffffff;
-  background-color: #000000;
+  background-color: #000000ba;
   padding: 14px 45px;
   border-radius: 20px;
+  margin-top: 55px;
 }
 
 .questionnaire {
@@ -391,6 +439,46 @@ label,
     transform: rotate(360deg);
   }
 }
+.button-container {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
 
+.accent {
+  font-size: 19px;
+}
+
+.made {
+  margin-bottom: 50px;
+}
+
+.text.important {
+  font-size: 20px;
+}
+
+.flowers,
+.photos-container{
+  border-radius: 15px;
+  background-color: #e0e0e0;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-color: transparent;
+  border-style: solid;
+  margin-top: 30px;
+}
+
+.flowers .flowers-title {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.flowers .wrapper .text,
+.photos-container .wrapper .text{
+  padding: 20px 30px;
+}
 </style>
 

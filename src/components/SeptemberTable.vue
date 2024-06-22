@@ -87,6 +87,8 @@ export default {
 
 .calendar {
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 table {
